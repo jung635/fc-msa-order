@@ -1,0 +1,31 @@
+
+server:
+    #shutdown: graceful
+    port: 8000
+
+spring:
+    lifecycle:
+        timeout-per-shutdown-phase: 20s
+    jpa:
+        show-sql: true
+    #    database-platform: mysql
+    hibernate:
+        ddl-auto: none
+    datasource:
+        url: jdbc:postgresql://localhost:5432/fc-order
+        username: postgres
+        password: postgres
+        flyway:
+            user: postgres
+            password: postgres
+            schemas: fc-order
+            url: jdbc:postgresql://localhost:5432/fc-order
+            enabled: false
+
+#  h2:
+#    console:
+#      enabled: true
+#      path: /h2-console
+
+logging:
+    config: classpath:logback-local.xml

@@ -25,12 +25,14 @@ public class ItemOptionGroup extends AbstractEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    //ItemOptionGruop N : Item 1
     @ManyToOne
     @JoinColumn(name = "item_id")
     private Item item;
     private Integer ordering;
     private String itemOptionGroupName;
 
+    //ItemOptionGroup 1 : ItemOption N
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "itemOptionGroup", cascade = CascadeType.PERSIST)
     private List<ItemOption> itemOptionList = Lists.newArrayList();
 

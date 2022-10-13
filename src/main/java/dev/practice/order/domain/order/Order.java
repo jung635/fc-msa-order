@@ -5,6 +5,7 @@ import dev.practice.order.common.util.TokenGenerator;
 import dev.practice.order.domain.AbstractEntity;
 import dev.practice.order.domain.order.item.OrderItem;
 import dev.practice.order.domain.order.deliveryFragment.DeliveryFragment;
+import dev.practice.order.domain.order.payment.PayMethod;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,10 +37,6 @@ public class Order extends AbstractEntity {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade = CascadeType.PERSIST)
     private List<OrderItem> orderItemList;
-
-    enum PayMethod {
-        CARD, BANK
-    }
 
     @RequiredArgsConstructor
     public enum Status {

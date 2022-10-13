@@ -17,7 +17,7 @@ import javax.persistence.*;
 @NoArgsConstructor //JPA 기술 특성상 생성자가 하나 필요함
 @Table(name = "partners")
 public class Partner extends AbstractEntity {
-    private static final String PREFIX_PARTNER = "_pnt";
+    private static final String PREFIX_PARTNER = "pnt_";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

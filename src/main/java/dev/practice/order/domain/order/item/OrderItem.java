@@ -24,9 +24,8 @@ public class OrderItem extends AbstractEntity {
     private Long partnerId;
     private String itemName;
     private Long itemPrice;
-    private Long itemCount;
-
     private Long itemId;
+    private Long orderCount;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "orderItemOptionGroup", cascade = CascadeType.PERSIST)
     private List<OrderItemOptionGroup> orderItemOptionGroupList;
@@ -58,7 +57,7 @@ public class OrderItem extends AbstractEntity {
             Long itemPrice,
             String itemToken,
             Long itemId,
-            Long itemCount
+            Long orderCount
     ) {
         if(partnerId == null) throw new InvalidParamException("OrderItem.partnerId");
         if(StringUtils.isBlank(itemName)) throw new InvalidParamException("OrderItem.itemName");
@@ -66,7 +65,7 @@ public class OrderItem extends AbstractEntity {
         if(order == null) throw new InvalidParamException("OrderItem.order");
         if(StringUtils.isBlank(itemToken)) throw new InvalidParamException("OrderItem.itemToken");
         if(itemId == null) throw new InvalidParamException("OrderItem.itemId");
-        if(itemCount == null) throw new InvalidParamException("OrderItem.itemCount");
+        if(orderCount == null) throw new InvalidParamException("OrderItem.itemCount");
 
         this.order = order;
         this.partnerId = partnerId;
@@ -74,7 +73,7 @@ public class OrderItem extends AbstractEntity {
         this.itemName = itemName;
         this.itemToken = itemToken;
         this.itemPrice = itemPrice;
-        this.itemCount = itemCount;
+        this.orderCount = orderCount;
         this.deliveryStatus = DeliveryStatus.BEFORE_DELIVERY;
     }
 
@@ -82,7 +81,7 @@ public class OrderItem extends AbstractEntity {
         Long itemOptionTotalAmount = orderItemOptionGroupList.stream()
                 .mapToLong(OrderItemOptionGroup::calculateTotalAmount)
                 .sum();
-        return (itemPrice + itemOptionTotalAmount) * itemCount;
+        return (itemPrice + itemOptionTotalAmount) * orderCount;
     }
 }
 

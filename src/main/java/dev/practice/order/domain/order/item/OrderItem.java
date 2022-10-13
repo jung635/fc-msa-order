@@ -25,7 +25,7 @@ public class OrderItem extends AbstractEntity {
     private String itemName;
     private Long itemPrice;
     private Long itemId;
-    private Long orderCount;
+    private Integer orderCount;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "orderItemOptionGroup", cascade = CascadeType.PERSIST)
     private List<OrderItemOptionGroup> orderItemOptionGroupList;
@@ -57,7 +57,7 @@ public class OrderItem extends AbstractEntity {
             Long itemPrice,
             String itemToken,
             Long itemId,
-            Long orderCount
+            Integer orderCount
     ) {
         if(partnerId == null) throw new InvalidParamException("OrderItem.partnerId");
         if(StringUtils.isBlank(itemName)) throw new InvalidParamException("OrderItem.itemName");

@@ -24,4 +24,8 @@ public class OrderFacade {
     public OrderInfo.Main retrieveOrder(String orderToken) {
         return orderService.retrieveOrder(orderToken);
     }
+
+    public void paymentOrder(OrderCommand.PaymentRequest paymentRequest) {
+        orderService.paymentOrder(paymentRequest);
+    }
 }

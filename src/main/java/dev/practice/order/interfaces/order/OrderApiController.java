@@ -32,4 +32,12 @@ public class OrderApiController {
         //return CommonResponse.success(orderResult);
         return CommonResponse.success(orderDtoMapper.of(orderResult));
     }
+
+    @PostMapping("/payment-order")
+    public CommonResponse paymentOrder(@RequestBody @Valid OrderDto.PaymentRequest request) {
+        log.info("결제방식::" + request.getPayMethod().name());
+        OrderCommand.PaymentRequest paymentRequest = orderDtoMapper.of(request);
+        orderFacade.paymentOrder(paymentRequest);
+        return CommonResponse.success("OK");
+    }
 }

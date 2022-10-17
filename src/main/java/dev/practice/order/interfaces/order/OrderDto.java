@@ -1,5 +1,6 @@
 package dev.practice.order.interfaces.order;
 
+import dev.practice.order.domain.order.payment.PayMethod;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -142,6 +143,23 @@ public class OrderDto {
         private final Integer ordering;
         private final String itemOptionName;
         private final Long itemOptionPrice;
+    }
+
+    @Getter
+    @Builder
+    @ToString
+    public static class PaymentRequest {
+        @NotBlank(message = "orderToken 는 필수값입니다")
+        private String orderToken;
+
+        @NotNull(message = "payMethod 는 필수값입니다")
+        private PayMethod payMethod;
+
+        @NotNull(message = "amount 는 필수값입니다")
+        private Long amount;
+
+        @NotBlank(message = "orderDescription 는 필수값입니다")
+        private String orderDescription;
     }
 
 }

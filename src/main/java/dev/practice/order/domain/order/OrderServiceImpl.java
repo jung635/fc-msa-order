@@ -31,7 +31,5 @@ public class OrderServiceImpl implements OrderService{
     public OrderInfo.Main retrieveOrder(String orderToken) {
         Order order = orderReader.getOrder(orderToken);
         return orderInfoMapper.of(order, order.getOrderItemList());
-        //return new OrderInfo.Main();
-        //return null;
     }
 }

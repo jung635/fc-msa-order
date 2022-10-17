@@ -78,4 +78,8 @@ public class Order extends AbstractEntity {
                 .mapToLong(OrderItem::calculatePrice)
                 .sum();
     }
+
+    public boolean isAlreadyPaymentcomplete() {
+        return status.equals(Status.DELIVERY_COMPLETE);
+    }
 }

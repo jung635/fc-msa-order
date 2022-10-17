@@ -25,7 +25,6 @@ public class PaymentProcessorImpl implements PaymentProcessor {
     }
 
     private PaymentApiCaller routingApiCaller(OrderCommand.PaymentRequest request) {
-        log.info("결제방식::" + request.getPayMethod().name());
         return paymentApiCallerList.stream()
                 .filter(paymentApiCaller -> paymentApiCaller.support(request.getPayMethod()))
                 .findFirst()

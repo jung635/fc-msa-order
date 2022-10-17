@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class PayMethodValidator implements PaymentValidator{
     @Override
     public void validate(Order order, OrderCommand.PaymentRequest request) {
-        if (!order.getPayMethod().equals(request.getPayMethod().name())) {
+        if (!order.getPayMethod().equals(request.getPayMethod())) {
             throw new InvalidParamException("주문 과정에서의 결제수단이 다릅니다.");
         }
     }

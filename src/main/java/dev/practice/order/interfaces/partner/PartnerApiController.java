@@ -18,9 +18,9 @@ public class PartnerApiController {
     private final PartnerDtoMapper partnerDtoMapper;
 
     @PostMapping
-    public CommonResponse registerPartner(@RequestBody PartnerDto.RegisterReqeust reqeust) {
+    public CommonResponse registerPartner(@RequestBody PartnerDto.RegisterReqeust request) {
         //var command = reqeust.toCommand(); -> mapper 사용하지 않는 경우
-        var command = partnerDtoMapper.of(reqeust);
+        var command = partnerDtoMapper.of(request);
         var  partnerInfo = partnerFacade.registerPartner(command);
         var response = new PartnerDto.RegisterResponse(partnerInfo);
         return CommonResponse.success(response);

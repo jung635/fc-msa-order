@@ -18,13 +18,14 @@ import java.util.List;
 @Table(name = "order_item_option_groups")
 public class OrderItemOptionGroup extends AbstractEntity {
 
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer ordering;
     private String itemOptionGroupName;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "orderItemOptionGroup", cascade = CascadeType.PERSIST)
-    List<OrderItemOption> itemOptionList;
+    List<OrderItemOption> orderItemOptionList;
 
     @ManyToOne
     @JoinColumn(name = "order_item_id")
@@ -46,7 +47,7 @@ public class OrderItemOptionGroup extends AbstractEntity {
     }
 
     public Long calculateTotalAmount() {
-        return itemOptionList.stream()
+        return orderItemOptionList.stream()
                 .mapToLong(OrderItemOption::getItemOptionPrice)
                 .sum();
     }

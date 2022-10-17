@@ -14,7 +14,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @Slf4j
-@Table(name = "items")
+@Table(name = "order_items")
 public class OrderItem extends AbstractEntity {
 
     @Id
@@ -27,7 +27,7 @@ public class OrderItem extends AbstractEntity {
     private Long itemId;
     private Integer orderCount;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "orderItemOptionGroup", cascade = CascadeType.PERSIST)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "orderItem", cascade = CascadeType.PERSIST)
     private List<OrderItemOptionGroup> orderItemOptionGroupList;
 
     @ManyToOne

@@ -7,7 +7,7 @@ public class TokenGenerator {
 
 
     public static String randomCharacter(int length) {
-        return RandomStringUtils.randomAlphanumeric(TOKEN_LENGTH);
+        return RandomStringUtils.randomAlphabetic(TOKEN_LENGTH);
     }
 
     public static String randomCharacterWithPrefix(String prefix) {

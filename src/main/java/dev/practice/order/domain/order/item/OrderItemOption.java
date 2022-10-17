@@ -17,6 +17,7 @@ import javax.persistence.*;
 @Table(name = "order_item_options")
 public class OrderItemOption extends AbstractEntity {
 
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer ordering;

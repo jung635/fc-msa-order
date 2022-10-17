@@ -1,13 +1,21 @@
 package dev.practice.order.domain.order;
 
+import dev.practice.order.domain.item.Item;
 import dev.practice.order.domain.order.deliveryFragment.DeliveryFragment;
+import dev.practice.order.domain.order.item.OrderItem;
+import dev.practice.order.domain.order.item.OrderItemOption;
+import dev.practice.order.domain.order.item.OrderItemOptionGroup;
 import dev.practice.order.domain.order.payment.PayMethod;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 public class OrderCommand {
 
     @Builder
+    @Getter
     public static class RegisterOrder {
         private final Long userId;
         private final PayMethod payMethod;
@@ -17,6 +25,8 @@ public class OrderCommand {
         private final String receiverAddress1;
         private final String receiverAddress2;
         private final String etcMessage;
+
+        private final List<RegisterOrderItem> orderItemList;
 
         public Order toEntity() {
             DeliveryFragment deliveryFragment = DeliveryFragment.builder()
@@ -37,6 +47,65 @@ public class OrderCommand {
     }
 
     @Builder
+    @Getter
+    public static class RegisterOrderItem {
+        private final Integer orderCount;
+        private final String itemToken;
+        private final String itemName;
+        private final Long itemPrice;
+        private final List<RegisterOrderItemOptionGroup> orderItemOptionGroupList;
+
+        public OrderItem toEntity(Order order, Item item) {
+            return OrderItem.builder()
+                    .order(order)
+                    .orderCount(orderCount)
+                    .partnerId(item.getPartnerId())
+                    .itemId(item.getId())
+                    .itemToken(itemToken)
+                    .itemName(itemName)
+                    .itemPrice(itemPrice)
+                    .build();
+        }
+    }
+
+
+    @Builder
+    @Getter
+    public static class RegisterOrderItemOptionGroup {
+        private final Integer ordering;
+        private final String itemOptionGroupName;
+        private final List<RegisterOrderItemOption> orderItemOptionList;
+
+        public OrderItemOptionGroup toEntity(OrderItem orderItem) {
+            return OrderItemOptionGroup.builder()
+                    .orderItem(orderItem)
+                    .ordering(ordering)
+                    .itemOptionGroupName(itemOptionGroupName)
+                    .build();
+        }
+    }
+
+
+    @Builder
+    @Getter
+    public static class RegisterOrderItemOption {
+        private final Integer ordering;
+        private final String itemOptionName;
+        private final Long itemOptionPrice;
+
+        public OrderItemOption toEntity(OrderItemOptionGroup orderItemOptionGroup) {
+            return OrderItemOption.builder()
+                    .orderItemOptionGroup(orderItemOptionGroup)
+                    .ordering(ordering)
+                    .itemOptionName(itemOptionName)
+                    .itemOptionPrice(itemOptionPrice)
+                    .build();
+        }
+    }
+
+
+    @Builder
+    @Getter
     public static class PaymentRequest {
         private final String orderToken;
         private final Long amount;

@@ -1,8 +1,7 @@
 package dev.practice.order.domain.order;
 
-import dev.practice.order.domain.order.deliveryFragment.DeliveryFragment;
-import dev.practice.order.domain.order.payment.PayMethod;
 import lombok.Builder;
+import lombok.Getter;
 
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -10,18 +9,33 @@ import java.util.List;
 public class OrderInfo {
 
     @Builder
+    @Getter
     public static class Main {
         private final Long orderId;
-        private final Long OrderToken;
+        private final String orderToken;
         private final Long userId;
-        private final PayMethod payMethod;
+        private final String payMethod;
         private final String status;
-        private final ZonedDateTime OrderedAt;
-        private final DeliveryFragment deliveryFragment;
+        private final String statusDescription;
+        private final ZonedDateTime orderedAt;
+        private final DeliveryInfo deliveryInfo;
         private final List<OrderItem> orderItemList;
+        private final Long totalAmount;
+    }
+
+    @Getter
+    @Builder
+    public static class DeliveryInfo {
+        private final String receiverName;
+        private final String receiverPhone;
+        private final String receiverZipcode;
+        private final String receiverAddress1;
+        private final String receiverAddress2;
+        private final String etcMessage;
     }
 
     @Builder
+    @Getter
     public static class OrderItem {
         private final Integer orderCount;
         private final Long partnerId;
@@ -35,6 +49,7 @@ public class OrderInfo {
     }
 
     @Builder
+    @Getter
     public static class OrderItemOptionGroup {
         private final Integer ordering;
         private final String itemOptionGroupName;
@@ -42,6 +57,7 @@ public class OrderInfo {
     }
 
     @Builder
+    @Getter
     public static class OrderItemOption {
         private final Integer ordering;
         private final String itemOptionName;

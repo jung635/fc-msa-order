@@ -39,6 +39,7 @@ public class Order extends AbstractEntity {
     private List<OrderItem> orderItemList;
 
     @RequiredArgsConstructor
+    @Getter
     public enum Status {
         INIT("주문시작"),
         ORDER_COMPLETE("주문완료"),
@@ -68,10 +69,11 @@ public class Order extends AbstractEntity {
     public void orderComplete(Status status) {
         if (this.status != Status.INIT) throw new IllegalStatusException();
         this.status = Status.ORDER_COMPLETE;
+        Order order = new Order();
     }
 
     //주문 총 가격 계산
-    public Long getTotalPrice(String orderToken) {
+    public Long getTotalPrice() {
         return orderItemList.stream()
                 .mapToLong(OrderItem::calculatePrice)
                 .sum();

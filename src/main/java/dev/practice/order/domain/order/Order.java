@@ -78,7 +78,7 @@ public class Order extends AbstractEntity {
                 .sum();
     }
 
-    public boolean isAlreadyPaymentcomplete() {
-        return status == Status.DELIVERY_COMPLETE;
+    public boolean isAlreadyPaymentComplete() {
+        return status == Status.ORDER_COMPLETE;
     }
 }

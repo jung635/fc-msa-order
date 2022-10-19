@@ -10,6 +10,6 @@ import org.springframework.stereotype.Component;
 public class PayStatusValidator implements PaymentValidator{
     @Override
     public void validate(Order order, OrderCommand.PaymentRequest request) {
-        if (order.isAlreadyPaymentcomplete()) throw new InvalidParamException("이미 결제완료된 주문입니다");
+        if (order.isAlreadyPaymentComplete()) throw new InvalidParamException("이미 결제완료된 주문입니다");
     }
 }

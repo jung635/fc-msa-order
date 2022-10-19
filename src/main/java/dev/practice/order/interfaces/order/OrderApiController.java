@@ -26,7 +26,7 @@ public class OrderApiController {
         return CommonResponse.success(response);
     }
 
-    @GetMapping("{orderToken}")
+    @GetMapping("/{orderToken}")
     public CommonResponse retrieveOrder(@PathVariable String orderToken) {
         OrderInfo.Main orderResult = orderFacade.retrieveOrder(orderToken);
         //return CommonResponse.success(orderResult);

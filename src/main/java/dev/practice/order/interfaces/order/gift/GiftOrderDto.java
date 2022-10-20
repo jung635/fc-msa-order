@@ -1,5 +1,6 @@
 package dev.practice.order.interfaces.order.gift;
 
+import dev.practice.order.domain.order.OrderCommand;
 import dev.practice.order.domain.order.payment.PayMethod;
 import lombok.Builder;
 import lombok.Getter;
@@ -76,5 +77,45 @@ public class GiftOrderDto {
     @ToString
     public static class RegisterResponse {
         private final String orderToken;
+    }
+
+    @Getter
+    @Builder
+    @ToString
+    public static class UpdateReceiverInfoReq {
+        private String receiverName;
+        private String receiverPhone;
+        private String receiverZipcode;
+        private String receiverAddress1;
+        private String receiverAddress2;
+        private String etcMessage;
+
+        public OrderCommand.UpdateReceiverInfoRequest toCommand() {
+            return OrderCommand.UpdateReceiverInfoRequest.builder()
+                    .receiverName(receiverName)
+                    .receiverPhone(receiverPhone)
+                    .receiverZipcode(receiverZipcode)
+                    .receiverAddress1(receiverAddress1)
+                    .receiverAddress2(receiverAddress2)
+                    .etcMessage(etcMessage)
+                    .build();
+        }
+    }
+
+    @Getter
+    @Builder
+    @ToString
+    public static class PaymentRequest {
+        @NotBlank(message = "orderToken 는 필수값입니다")
+        private String orderToken;
+
+        @NotNull(message = "payMethod 는 필수값입니다")
+        private PayMethod payMethod;
+
+        @NotNull(message = "amount 는 필수값입니다")
+        private Long amount;
+
+        @NotBlank(message = "orderDescription 는 필수값입니다")
+        private String orderDescription;
     }
 }

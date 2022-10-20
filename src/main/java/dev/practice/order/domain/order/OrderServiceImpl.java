@@ -38,4 +38,19 @@ public class OrderServiceImpl implements OrderService{
         Order order = orderReader.getOrder(orderToken);
         return orderInfoMapper.of(order, order.getOrderItemList());
     }
+
+    @Override
+    @Transactional
+    public void updateReceiverInfo(String orderToken, OrderCommand.UpdateReceiverInfoRequest request) {
+        Order order = orderReader.getOrder(orderToken);
+        order.updateDeliveryFragment(
+                request.getReceiverName(),
+                request.getReceiverPhone(),
+                request.getReceiverZipcode(),
+                request.getReceiverAddress1(),
+                request.getReceiverAddress2(),
+                request.getEtcMessage()
+        );
+        order.deliveryPrepare();
+    }
 }

@@ -7,4 +7,6 @@ public interface OrderService {
     void paymentOrder(OrderCommand.PaymentRequest paymentRequest);
     //조회
     OrderInfo.Main retrieveOrder(String orderToken);
+
+    void updateReceiverInfo(String orderToken, OrderCommand.UpdateReceiverInfoRequest request);
 }

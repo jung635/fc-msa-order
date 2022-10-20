@@ -81,4 +81,28 @@ public class Order extends AbstractEntity {
     public boolean isAlreadyPaymentComplete() {
         return status == Status.ORDER_COMPLETE;
     }
+
+    public void updateDeliveryFragment(
+            String receiverName,
+            String receiverPhone,
+            String receiverZipcode,
+            String receiverAddress1,
+            String receiverAddress2,
+            String etcMessage
+    ) {
+        this.deliveryFragment = DeliveryFragment.builder()
+                .receiverName(receiverName)
+                .receiverPhone(receiverPhone)
+                .receiverZipcode(receiverZipcode)
+                .receiverAddress1(receiverAddress1)
+                .receiverAddress2(receiverAddress2)
+                .etcMessage(etcMessage)
+                .build();
+    }
+
+    public void deliveryPrepare() {
+        if (this.status != Status.ORDER_COMPLETE) throw new IllegalStatusException();
+        this.status = Status.DELIVERY_PREPARE;
+        this.getOrderItemList().forEach(OrderItem::deliveryPrepare);
+    }
 }

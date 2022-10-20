@@ -17,7 +17,7 @@ public class OrderFacade {
 
     public String registerOrder(OrderCommand.RegisterOrder registerOrder) {
         String orderToken = orderService.registerOrder(registerOrder);
-        notificationService.sendKakao("ORDER_COMPLETE", "content");
+        notificationService.sendKakao("01012345678", "ORDER_COMPLETE");
         return orderToken;
     }
 
@@ -27,5 +27,11 @@ public class OrderFacade {
 
     public void paymentOrder(OrderCommand.PaymentRequest paymentRequest) {
         orderService.paymentOrder(paymentRequest);
+        notificationService.sendKakao("01012345678", "PAYMENT_ORDER");
+    }
+
+    public void updateReceiverInfo(String orderToken, OrderCommand.UpdateReceiverInfoRequest request) {
+        orderService.updateReceiverInfo(orderToken, request);
+        notificationService.sendKakao("01012345678", "UPDATE_RECEIVER_INFO");
     }
 }

@@ -17,5 +17,5 @@ public interface GiftOrderDtoMapper {
     OrderCommand.RegisterOrderItemOptionGroup of(GiftOrderDto.RegisterOrderItemOptionGroupRequest request);
     OrderCommand.RegisterOrderItemOption of(GiftOrderDto.RegisterOrderItemOptionRequest request);
     GiftOrderDto.RegisterResponse of(String orderToken);
-
+    OrderCommand.PaymentRequest of(GiftOrderDto.PaymentRequest request);
 }

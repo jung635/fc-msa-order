@@ -16,6 +16,6 @@ public class pgCardApiCaller implements PaymentApiCaller {
 
     @Override
     public void pay(OrderCommand.PaymentRequest request) {
-        log.info("Customer pays by KakaoPay.");
+        log.info("Customer pays by pgCard.");
     }
 }

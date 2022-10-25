@@ -1,11 +1,11 @@
 ### 아이템 등록
-POST http://localhost:8080/api/v1/items
+POST http://localhost:8000/api/v1/items
 Content-Type: application/json
 
 {
-  "partnerToken": "ptn_oWkmVAFErP2zgALi",
-  "itemName": "티셔츠",
-  "itemPrice": 30000,
+  "partnerToken": "pnt_PoHkBfNBJdydYiq7wobN",
+  "itemName": "원피스",
+  "itemPrice": 50000,
   "itemOptionGroupList": [
     {
       "ordering": "1",
@@ -40,8 +40,8 @@ Content-Type: application/json
         },
         {
           "ordering": 2,
-          "itemOptionName": "GOLD",
-          "itemOptionPrice": 1000
+          "itemOptionName": "BLUE",
+          "itemOptionPrice": 0
         }
       ]
     }
@@ -49,15 +49,15 @@ Content-Type: application/json
 }
 
 ### 아이템 1 활성화
-POST http://localhost:8080/api/v1/items/change-on-sales
+POST http://localhost:8000/api/v1/items/change-on-sales
 Content-Type: application/json
 
 {
-  "itemToken": "itm_XqbL4h1l5mz1mnMZ"
+  "itemToken": "item_yuAzfZSNySTHIZRwRYxe"
 }
 
 ### 아이템 등록 2
-POST http://localhost:8080/api/v1/items
+POST http://localhost:8000/api/v1/items
 Content-Type: application/json
 
 {
@@ -107,15 +107,15 @@ Content-Type: application/json
 }
 
 ### 아이템 2 활성화
-POST http://localhost:8080/api/v1/items/change-on-sales
+POST http://localhost:8000/api/v1/items/change-on-sales
 Content-Type: application/json
 
 {
-  "itemToken": "itm_qCPGVzwvLVmCoZs6"
+  "itemToken": "item_yuAzfZSNySTHIZRwRYxe"
 }
 
 ### 아이템 등록 3
-POST http://localhost:8080/api/v1/items
+POST http://localhost:8000/api/v1/items
 Content-Type: application/json
 
 {
@@ -125,5 +125,5 @@ Content-Type: application/json
 }
 
 ### 아이템 조회
-GET http://localhost:8080/api/v1/items/itm_lnTOhyzZcBheBsce
+GET http://localhost:8000/api/v1/items/item_yuAzfZSNySTHIZRwRYxe
 Content-Type: application/json

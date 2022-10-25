@@ -3,7 +3,7 @@ POST http://localhost:8000/api/v1/partners
 Content-Type: application/json
 
 {
-  "partnerName": "테스트",
+  "partnerName": "정가지",
   "businessNo": "1234123456",
   "email": "gajy@gmail.com"
 }

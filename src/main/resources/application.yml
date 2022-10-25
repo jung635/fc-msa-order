@@ -1,6 +1,6 @@
 
 server:
-    #shutdown: graceful
+    shutdown: graceful
     port: 8000
 
 spring:
@@ -8,7 +8,6 @@ spring:
         timeout-per-shutdown-phase: 20s
     jpa:
         show-sql: true
-    #    database-platform: mysql
     hibernate:
         ddl-auto: none
     datasource:
@@ -22,10 +21,9 @@ spring:
             url: jdbc:postgresql://localhost:5432/fc-order
             enabled: false
 
-#  h2:
-#    console:
-#      enabled: true
-#      path: /h2-console
+    kafka:
+        producer:
+            bootstrap-servers: localhost:9092
 
 logging:
     config: classpath:logback-local.xml
